@@ -1,5 +1,7 @@
+#pragma once
 #include <map>
 #include "City.hpp"
+#include "Color.hpp"
 using namespace std;
 
 namespace pandemic {
@@ -8,12 +10,11 @@ namespace pandemic {
             map<City, int> city_map;
 
         public:
-            
             int& operator[] (const City c){
                 return city_map[c]; 
             }
 
-            friend ostream& operator<< (ostream& os,const Board& num);
+            friend ostream& operator<< (ostream& os,const Board& num){ return os; }
             
             bool is_clean(){
                 for (auto const &pair: city_map) {
@@ -23,4 +24,3 @@ namespace pandemic {
             }
     };
 }
-

@@ -1,7 +1,12 @@
-namespace pandemic {
-    class GeneSplicer: public Player{
+// #include "Player.hpp"
+// #include "Board.hpp"
+// #include "City.hpp"
+
+// namespace pandemic {
+//     class GeneSplicer: public Player{
         
-        public:
-            void discover_cure();
-    };
-}
+//         public:
+//             GeneSplicer(Board b, City c){}
+//             // void discover_cure();
+//     };
+// }

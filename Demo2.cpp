@@ -46,7 +46,7 @@ bool can_discover_cure(Player& player, Color color) {
 
 // Check the conditions in which the given player can discover a cure.
 void check_cure_discovery(Player& player) {
-	cout << "Checking a " << player.role() << ": " << endl;
+	// cout << "Checking a " << player.role() << ": " << endl;
 
 	take_four_red_cards(player);
 	cout << "  Four red cards, no research station: " << can_discover_cure(player, Color::Red) << endl;
@@ -78,37 +78,37 @@ int main() {
 	OperationsExpert builder {board, City::Atlanta}; 
 	builder.build();  // Build a research station in Atlanta, to prepare the board for the tests.
 
-	{
-		FieldDoctor player(board, City::Washington);
-		check_cure_discovery(player);  // should print: false false false false true
-	}
-	{
-		Virologist player(board, City::Washington);
-		check_cure_discovery(player);  // should print: false false false false true
-	}
-	{
-		OperationsExpert player(board, City::Washington);
-		check_cure_discovery(player);  // should print: false false false false true
-	}
-	{
-		Medic player(board, City::Washington);
-		check_cure_discovery(player);  // should print: false false false false true
-	}
-	{
-		Dispatcher player(board, City::Washington);
-		check_cure_discovery(player);  // should print: false false false false true
-	}
-	{
-		GeneSplicer player(board, City::Washington);
-		check_cure_discovery(player);  // should print: false false ***true*** false true [can find a cure with 4 red and 1 black card]
-	}
-	{
-		Researcher player(board, City::Washington);
-		check_cure_discovery(player);  // should print: false false false ***true*** true [can find a cure without a research station]
-	}
-	{
-		Scientist player(board, City::Washington, 4);
-		check_cure_discovery(player);  // should print: false ***true*** ***true*** false true  [can find a cure with only 4 red cards]
-	}
+	// {
+	// 	FieldDoctor player(board, City::Washington);
+	// 	check_cure_discovery(player);  // should print: false false false false true
+	// }
+	// {
+	// 	Virologist player(board, City::Washington);
+	// 	check_cure_discovery(player);  // should print: false false false false true
+	// }
+	// {
+	// 	OperationsExpert player(board, City::Washington);
+	// 	check_cure_discovery(player);  // should print: false false false false true
+	// }
+	// {
+	// 	Medic player(board, City::Washington);
+	// 	check_cure_discovery(player);  // should print: false false false false true
+	// }
+	// {
+	// 	Dispatcher player(board, City::Washington);
+	// 	check_cure_discovery(player);  // should print: false false false false true
+	// }
+	// {
+	// 	GeneSplicer player(board, City::Washington);
+	// 	check_cure_discovery(player);  // should print: false false ***true*** false true [can find a cure with 4 red and 1 black card]
+	// }
+	// {
+	// 	Researcher player(board, City::Washington);
+	// 	check_cure_discovery(player);  // should print: false false false ***true*** true [can find a cure without a research station]
+	// }
+	// {
+	// 	Scientist player(board, City::Washington, 4);
+	// 	check_cure_discovery(player);  // should print: false ***true*** ***true*** false true  [can find a cure with only 4 red cards]
+	// }
 }
 

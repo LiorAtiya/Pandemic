@@ -1,7 +1,12 @@
-namespace pandemic {
-    class FieldDoctor: public Player{
+// #include "Player.hpp"
+// #include "Board.hpp"
+// #include "City.hpp"
+
+// namespace pandemic {
+//     class FieldDoctor: public Player{
         
-        public:
-            void treat();
-    };
-}
+//         public:
+//             FieldDoctor(Board b, City c){}
+//             // void treat();
+//     };
+// }

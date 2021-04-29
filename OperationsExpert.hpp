@@ -1,4 +1,6 @@
 #include "Player.hpp"
+#include "Board.hpp"
+#include "City.hpp"
 
 namespace pandemic {
     class OperationsExpert: public Player{
@@ -7,16 +9,7 @@ namespace pandemic {
             City city;
 
         public:
-            // OperationsExpert(Board b, City c):board(b),city(c){};
-            void build();
-            // OperationsExpert take_card(City c){
-            //     take_card(c);
-            //     return *this;
-            // }
-
-            // OperationsExpert drive(City c){
-            //     drive(c);
-            //     return *this;
-            // }
+            OperationsExpert(Board b,City c){}
+            // void build(){}
     };
 }

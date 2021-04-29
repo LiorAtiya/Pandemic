@@ -1,8 +1,12 @@
+// #include "Player.hpp"
+// #include "Board.hpp"
+// #include "City.hpp"
 
-namespace pandemic {
-    class Medic: public Player{
+// namespace pandemic {
+//     class Medic: public Player{
         
-        public:
-            void build();
-    };
-}
+//         public:
+//             Medic(Board b, City c){}
+//             // void build();
+//     };
+// }
