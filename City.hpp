@@ -1,4 +1,6 @@
 #pragma once
+#include <map>
+#include <string>
 
 namespace pandemic {
 	enum class City {
@@ -51,4 +53,5 @@ namespace pandemic {
 		Tokyo,
 		Washington,	
 	};
+
 }
