@@ -10,6 +10,6 @@ namespace pandemic {
 
         public:
             OperationsExpert(Board b,City c){}
-            // void build(){}
+            void build(){}
     };
 }

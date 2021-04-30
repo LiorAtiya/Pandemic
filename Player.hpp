@@ -1,5 +1,9 @@
+#pragma once
+#include <string>
 #include "Color.hpp"
 #include "City.hpp"
+
+using namespace std;
 
 namespace pandemic {
     class Player{
@@ -7,6 +11,7 @@ namespace pandemic {
 
 
         public:
+            
             Player drive(City c){ return *this;}
             virtual Player fly_direct(City c){return *this; }
             void fly_charter(City c){}
@@ -16,7 +21,7 @@ namespace pandemic {
             virtual Player treat(City c){return *this; }
 
             //FIX RETURN
-            Player role();
+            string role(){return ""; }
             Player take_card(City c){
                 return *this;
             }
