@@ -8,6 +8,6 @@ namespace pandemic {
         
         public:
             FieldDoctor(Board b, City c){}
-            Player treat(City c){ return *this; }
+            Player& treat(City c){ return *this; }
     };
 }

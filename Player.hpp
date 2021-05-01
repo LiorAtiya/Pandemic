@@ -17,18 +17,17 @@ namespace pandemic {
 
         public:
             Player(){read_cities(); }
-            City get_current_place(){ return this->current_place; }
-            void set_current_place(City c){this->current_place = c; }
 
+            Board board_game;
             Player& drive(City c);
             virtual Player& fly_direct(City c);
-            void fly_charter(City c){}
-            void fly_shuttle(City c){}
-            virtual void build(){};
-            virtual void discover_cure(Color c){}
-            virtual Player treat(City c){return *this; }
+            Player& fly_charter(City c);
+            Player& fly_shuttle(City c);
+            virtual Player& build();
+            virtual Player& discover_cure(Color c);
+            virtual Player& treat(City c);
 
-            string role(){return ""; }
+            string role();
             Player& take_card(City c);
     };
 

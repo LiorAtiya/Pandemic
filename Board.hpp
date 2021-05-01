@@ -7,7 +7,6 @@
 #include <iostream>
 using namespace std;
 
-
 namespace pandemic {
 
     // void read_cities();
@@ -15,9 +14,18 @@ namespace pandemic {
     class Board {
         private:
             map<City, int> disease_level;
+            map<City, bool> research_stations;
 
         public:
             // Board(){ read_cities(); }
+
+            map<City,bool>& get_research_stations(){
+                return research_stations;
+            }
+
+            void set_research_stations(City c){
+                research_stations[c] = true;
+            }
 
             int& operator[] (const City c){
                 return disease_level[c]; 

@@ -5,11 +5,13 @@
 namespace pandemic {
     class OperationsExpert: public Player{
         private: 
-            Board board;
+            // Board board;
             City city;
 
         public:
-            OperationsExpert(Board b,City c){}
-            void build(){}
+            OperationsExpert(Board b,City c){
+                board_game = b;
+            }
+            // void build(){}
     };
 }

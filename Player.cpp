@@ -63,32 +63,60 @@ namespace pandemic {
         if(neighbor_cities[this->current_place][c] == 0U){
             throw invalid_argument("not connected!");
         }
-        this->set_current_place(c);
+        current_place = c;
         return *this;
     }
 
     Player& Player::fly_direct(City c){
+        
+        //Card "c" is not on the player's list of cards
+        if(my_cards[cities_color[c]][c] == 0U){
+            throw invalid_argument("not connected!");
+        }
+        //Change place of player and remove card of city from my_card
+        current_place = c;
+        my_cards[cities_color[c]].erase(c);
 
-        // if(my_cards["fdf"]["dfd"] == 0U){
-        //     throw invalid_argument("not connected!");
-        // }
-        this->set_current_place(c);
         return *this;
     }
 
-//     void fly_charter(City c){
+    Player& Player::fly_charter(City c){
+        return *this;
+    }
 
-//     }
+    Player& Player::fly_shuttle(City c){
+        if(board_game.get_research_stations()[current_place]){
+            this->current_place = c;
+        }
+        return *this;
+    }
 
-//     void fly_shuttle(City c){}
+    Player& Player::build(){
+        board_game.set_research_stations(current_place);
+        return *this;
+    }
+    
+    Player& Player::discover_cure(Color c){
+        // //If there is a research station in the city where the player is located
+        // if(board_game.get_research_stations()[current_place]){
+        //     //If there are 5 cards of the same color
+        //     if(my_cards[c].size() >= 5){
 
-//     void build(){}
-//     void discover_cure(Color c){}
-//     void treat(City c){}
-//     void role(){}
+        //     }
+        // }
+        return *this;
+    }
+    Player& Player::treat(City c){
+        return *this; 
+    }
+
+    string role(){
+        return ""; 
+    }
 
     Player& Player::take_card(City c){
 
+        //Adding a card to the player's cashier
         my_cards[cities_color[c]][c] = true;
         return *this;
     }
