@@ -6,19 +6,20 @@
 
 using namespace std;
 
-
 namespace pandemic {
-    void convert();
-    void read_cities();
+
     class Player{
         private:
             City current_place;
             map<Color, map<City,bool>> my_cards;
+            Board board_game;
 
         public:
-            Player(){read_cities(); }
+            //Get & Set of the board game
+            Board& get_board(){ return board_game; }
+            void set_board(Board b){ board_game = b; }
 
-            Board board_game;
+            //Actions of player
             Player& drive(City c);
             virtual Player& fly_direct(City c);
             Player& fly_charter(City c);
@@ -26,9 +27,10 @@ namespace pandemic {
             virtual Player& build();
             virtual Player& discover_cure(Color c);
             virtual Player& treat(City c);
-
-            string role();
             Player& take_card(City c);
+            
+            //Role of player
+            string role();
     };
 
 }

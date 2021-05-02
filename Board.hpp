@@ -8,36 +8,32 @@
 using namespace std;
 
 namespace pandemic {
-
-    // void read_cities();
     
     class Board {
         private:
             map<City, int> disease_level;
             map<City, bool> research_stations;
+            //list of neighbor cities
+            map<City,map<City, bool>> neighbor_cities;
+            //list of cities color
+            map<City,Color> cities_color;
 
         public:
-            // Board(){ read_cities(); }
+            //Init neighbors & colors cities 
+            void read_cities();
 
-            map<City,bool>& get_research_stations(){
-                return research_stations;
-            }
+            //Getters & Setters of details maps
+            map<City,bool>& get_research_stations(){ return research_stations; }
+            void set_research_stations(City c){ research_stations[c] = true; }
 
-            void set_research_stations(City c){
-                research_stations[c] = true;
-            }
+            map<City,map<City, bool>>& get_neighbor_cities(){ return neighbor_cities; }
+            map<City,Color>& get_cities_color(){ return cities_color; }
 
-            int& operator[] (const City c){
-                return disease_level[c]; 
-            }
+            //Operators
+            int& operator[] (const City c);
+            friend ostream& operator<< (ostream& os,const Board& num);
 
-            friend ostream& operator<< (ostream& os,const Board& num){ return os; }
-            
-            bool is_clean(){
-                for (auto const &pair: disease_level) {
-                    if(pair.second != 0) return false;
-                }
-                return true;
-            }
+            //Checks empty disease_level map
+            bool is_clean();
     };
 }
