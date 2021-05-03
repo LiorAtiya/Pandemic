@@ -7,6 +7,6 @@ namespace pandemic {
         
         public:
             Researcher(Board b, City c){}
-            void discover_cure(Color c){}
+            Player& discover_cure(Color c){ return *this; }
     };
 }

@@ -10,8 +10,8 @@ namespace pandemic {
 
         public:
             OperationsExpert(Board b,City c){
-                set_board(b);
-                b.read_cities();
+                // set_board(b);
+                // b.read_cities();
             }
             // void build(){}
     };

@@ -7,6 +7,6 @@ namespace pandemic {
         
         public:
             Medic(Board b, City c){}
-            Player treat(City c){ return *this; }
+            Player& treat(City c){ return *this; }
     };
 }

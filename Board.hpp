@@ -13,9 +13,7 @@ namespace pandemic {
         private:
             map<City, int> disease_level;
             map<City, bool> research_stations;
-            //list of neighbor cities
             map<City,map<City, bool>> neighbor_cities;
-            //list of cities color
             map<City,Color> cities_color;
 
         public:
@@ -35,5 +33,7 @@ namespace pandemic {
 
             //Checks empty disease_level map
             bool is_clean();
+            //Remove all discover_cure - JUST FOR TESTS
+            void remove_cures();
     };
 }

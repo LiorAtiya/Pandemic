@@ -16,6 +16,10 @@ namespace pandemic {
         return true;
     }
 
+    void Board::remove_cures(){
+        
+    }
+
 
 
 
