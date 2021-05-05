@@ -6,7 +6,7 @@ namespace pandemic {
     class Medic: public Player{
         
         public:
-            Medic(Board b, City c){}
+            Medic(Board& b, City c):Player(b,c){}
             Player& treat(City c){ return *this; }
             string role(){ return "Medic"; }
     };

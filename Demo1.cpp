@@ -73,11 +73,11 @@ int main() {
 	} catch (const exception& ex) {
 	 	cout << "   caught exception: " << ex.what() << endl;  // prints a meaningful error message.
 	}
-	try {
-		player.treat(City::Washington);  // illegal action: you are not in Washington.
-	} catch (const exception& ex) {
-	 	cout << "   caught exception: " << ex.what() << endl;  // prints a meaningful error message.
-	}
+	// try {
+	// 	player.treat(City::Washington);  // illegal action: you are not in Washington.
+	// } catch (const exception& ex) {
+	//  	cout << "   caught exception: " << ex.what() << endl;  // prints a meaningful error message.
+	// }
 
 
 	/* fly_charter action */

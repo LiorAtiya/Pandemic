@@ -5,7 +5,9 @@
 
 namespace pandemic {
 
-    int& Board::operator[] (const City c){ return details_of_cities[c].disease_level; }
+    int& Board::operator[] (City c){ return details_of_cities[c].disease_level; }
+    // int pandemic::Board::operator[] (pandemic::City c) const {return details_of_cities.at(c).disease_level; }
+
     ostream& operator<< (ostream& os,const Board& num){ return os; }
 
     bool Board::is_clean(){

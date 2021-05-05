@@ -6,7 +6,7 @@ namespace pandemic {
     class Researcher: public Player{
         
         public:
-            Researcher(Board b, City c){}
+            Researcher(Board& b, City c):Player(b,c){}
             Player& discover_cure(Color c){ return *this; }
             string role(){ return "Researcher"; }
             

@@ -12,15 +12,17 @@ namespace pandemic {
         private:
             City current_place;
             map<Color, map<City,bool>> my_cards;
-            Board board_game;
+            Board& board_game;
 
         public:
+            Player(Board& b, City c):board_game(b),current_place(c){}
+
             //Get & Set of the board game
             Board& get_board(){ return board_game; }
-            void set_board(Board& b){ board_game = b; }
+            // void set_board(Board& b){ board_game = b; }
 
             City get_current_place(){ return current_place; }
-            void set_current_place(City c){ current_place = c; }
+            // void set_current_place(City c){ current_place = c; }
 
             //Actions of player
             Player& drive(City c);
