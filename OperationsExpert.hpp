@@ -5,14 +5,16 @@
 namespace pandemic {
     class OperationsExpert: public Player{
         private: 
-            // Board board;
-            City city;
 
         public:
-            OperationsExpert(Board b,City c){
-                // set_board(b);
-                // b.read_cities();
+            OperationsExpert(Board& b,City c){
+                set_board(b);
+                set_current_place(c);
             }
-            // void build(){}
+            Player& build(){
+                get_board().get_details_of_cities()[this->get_current_place()].research_stations = true;
+                return *this;
+            }
+            string role(){ return "OperationsExpert"; }
     };
 }

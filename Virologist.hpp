@@ -9,5 +9,6 @@ namespace pandemic {
         public:
             Virologist(Board b, City c){}
             // void treat();
+            string role(){ return "Virologist"; }
     };
 }

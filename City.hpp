@@ -1,16 +1,14 @@
 #pragma once
-#include <map>
-#include <string>
 
 namespace pandemic {
 	enum class City {
-		Algiers, 
-		Atlanta, 
-		Baghdad, 
-		Bangkok, 
-		Beijing,
-		Bogota, 
-		BuenosAires, 
+		Algiers = 0, 
+		Atlanta = 0, 
+		Baghdad = 0, 
+		Bangkok = 0, 
+		Beijing = 0,
+		Bogota = 0, 
+		BuenosAires = 0, 
 		Cairo, 
 		Chennai, 
 		Chicago,
@@ -53,5 +51,4 @@ namespace pandemic {
 		Tokyo,
 		Washington,	
 	};
-
 }

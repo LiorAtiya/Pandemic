@@ -26,12 +26,11 @@ int main() {
 	board[City::Chicago] = 1;       // put 1 blue disease cube in Chicago
 
 	OperationsExpert player {board, City::Atlanta};  // initialize an "operations expert" player on the given board, in Atlanta.
-	player.take_card(City::Khartoum)
+	player.take_card(City::Johannesburg)
 	 .take_card(City::Khartoum)
 	 .take_card(City::SaoPaulo)
 	 .take_card(City::BuenosAires)
 	 .take_card(City::HoChiMinhCity);
-
 
 
 	/* build action */
@@ -39,6 +38,7 @@ int main() {
 	player.build();  // legal action: you build a research station in Atlanta.
 		// NOTE: you do not have the Atlanta card, so for other roles this would throw an exception.
 		//       But for the OperationsExpert it is legal, since he may build a research station without a card.
+
 
 	/* drive action */
 
@@ -50,7 +50,7 @@ int main() {
 	}
 
 
-	// /* fly_direct action */
+	/* fly_direct action */
 
 	player.fly_direct(City::Johannesburg);  // legal action: you discard the Johannesburg card and fly to Johannesburg.
 	try {
@@ -80,7 +80,7 @@ int main() {
 	}
 
 
-	// /* fly_charter action */
+	/* fly_charter action */
 
 	player.drive(City::Khartoum)
 	 .fly_charter(City::Sydney);  // legal action: you discard the Khartoum card and fly to Sydney.
@@ -92,7 +92,7 @@ int main() {
 	}
 
 
-	// /* build action */
+	/* build action */
 
 	player.drive(City::LosAngeles);  // legal action: note that LosAngeles is connected to Sydney.
 	player.build();     // legal action: build a research station in LosAngeles.
@@ -125,31 +125,30 @@ int main() {
 	 .take_card(City::Lima);
 
 	player.discover_cure(Color::Yellow); // legal action: you discard 5 yellow cards and discover a yellow cure.
-	try {
-		player.fly_direct(City::Miami); // illegal action: you discarded the Miami card to discover a cure, so you cannot use this card.
-	} catch (const exception& ex) {
-	 	cout << "   caught exception: " << ex.what() << endl;  // prints a meaningful error message.
-	}
+	// try {
+	// 	player.fly_direct(City::Miami); // illegal action: you discarded the Miami card to discover a cure, so you cannot use this card.
+	// } catch (const exception& ex) {
+	//  	cout << "   caught exception: " << ex.what() << endl;  // prints a meaningful error message.
+	// }
 
-	/* treat action after discovering a cure */
+	// /* treat action after discovering a cure */
 
-	player.drive(City::MexicoCity); 
-	cout << board[City::MexicoCity] << endl; // 3
-	player.treat(City::MexicoCity);   // you now remove ALL disease cubes from MexicoCity, since there is a yelllow cure.
-	cout << board[City::MexicoCity] << endl; // 0
+	// player.drive(City::MexicoCity); 
+	// cout << board[City::MexicoCity] << endl; // 3
+	// player.treat(City::MexicoCity);   // you now remove ALL disease cubes from MexicoCity, since there is a yelllow cure.
+	// cout << board[City::MexicoCity] << endl; // 0
 
 
-	/* clean the board */
+	// /* clean the board */
 
-	cout << board << endl;  // print the board in any reasonable format.
-	cout << board.is_clean() << endl;  // print "0" - the board is not clean.
+	// cout << board << endl;  // print the board in any reasonable format.
+	// cout << board.is_clean() << endl;  // print "0" - the board is not clean.
 
-	player.drive(City::Chicago)
-	 .treat(City::Chicago)             // remove one disease cube - there is no blue cure yet.
-     .fly_direct(City::HoChiMinhCity)
-	 .treat(City::HoChiMinhCity);      // remove one disease cube - there is no red cure yet.
+	// player.drive(City::Chicago)
+	//  .treat(City::Chicago)             // remove one disease cube - there is no blue cure yet.
+    //  .fly_direct(City::HoChiMinhCity)
+	//  .treat(City::HoChiMinhCity);      // remove one disease cube - there is no red cure yet.
 
-	cout << board << endl;  // prints the board in any reasonable format.
-	cout << board.is_clean() << endl;  // prints "1" - the board is clean - congratulations!!! You treated all diseases!!!
+	// cout << board << endl;  // prints the board in any reasonable format.
+	// cout << board.is_clean() << endl;  // prints "1" - the board is clean - congratulations!!! You treated all diseases!!!
 }
-

@@ -8,5 +8,6 @@ namespace pandemic {
         public:
             Scientist(Board b, City c, int n){}
             Player& discover_cure(Color c){ return *this; }
+            string role(){ return "Scientist"; }
     };
 }

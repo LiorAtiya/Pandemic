@@ -8,5 +8,6 @@ namespace pandemic {
         public:
             Medic(Board b, City c){}
             Player& treat(City c){ return *this; }
+            string role(){ return "Medic"; }
     };
 }

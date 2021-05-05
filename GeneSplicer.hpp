@@ -8,5 +8,6 @@ namespace pandemic {
         public:
             GeneSplicer(Board b, City c){}
             Player& discover_cure(Color c){ return *this; }
+            string role(){ return "GeneSplicer"; }
     };
 }

@@ -17,7 +17,10 @@ namespace pandemic {
         public:
             //Get & Set of the board game
             Board& get_board(){ return board_game; }
-            void set_board(Board b){ board_game = b; }
+            void set_board(Board& b){ board_game = b; }
+
+            City get_current_place(){ return current_place; }
+            void set_current_place(City c){ current_place = c; }
 
             //Actions of player
             Player& drive(City c);
@@ -30,7 +33,7 @@ namespace pandemic {
             Player& take_card(City c);
             
             //Role of player
-            string role();
+            virtual string role() = 0;
     };
 
 }
