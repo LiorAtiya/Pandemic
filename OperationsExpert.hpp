@@ -8,10 +8,7 @@ namespace pandemic {
         public:
             OperationsExpert(Board& b,City c):Player(b,c){}
 
-            Player& build(){
-                get_board().get_details_of_cities()[this->get_current_place()].research_stations = true;
-                return *this;
-            }
-            string role(){ return "OperationsExpert"; }
+            Player& build();
+            string role();
     };
 }

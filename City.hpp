@@ -2,13 +2,13 @@
 
 namespace pandemic {
 	enum class City {
-		Algiers = 0, 
-		Atlanta = 0, 
-		Baghdad = 0, 
-		Bangkok = 0, 
-		Beijing = 0,
-		Bogota = 0, 
-		BuenosAires = 0, 
+		Algiers, 
+		Atlanta, 
+		Baghdad, 
+		Bangkok, 
+		Beijing,
+		Bogota, 
+		BuenosAires, 
 		Cairo, 
 		Chennai, 
 		Chicago,

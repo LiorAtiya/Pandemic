@@ -5,28 +5,12 @@
 
 namespace pandemic {
 
-    int& Board::operator[] (City c){ return details_of_cities[c].disease_level; }
-    // int pandemic::Board::operator[] (pandemic::City c) const {return details_of_cities.at(c).disease_level; }
-
-    ostream& operator<< (ostream& os,const Board& num){ return os; }
-
-    bool Board::is_clean(){
-        for (auto const &pair: details_of_cities) {
-            cout << pair.second.disease_level << " ";
-            if(pair.second.disease_level != 0) return false;
-        }
-        return true;
-    }
-
-    void Board::remove_cures(){
-
-    }
-
-
     //convert from string to enum City
-    std::map<std::string, City> string_2_City;
+    map<string, City> string_2_City;
+    map<City, string> City_2_string;
     //convert from string to enum Color
-    std::map<std::string, Color> string_2_Color;
+    map<string, Color> string_2_Color;
+    map<Color, string> Color_2_string;
 
     void convert(){
 		string_2_City["Algiers"] = City::Algiers;
@@ -86,9 +70,63 @@ namespace pandemic {
         string_2_Color["Blue"] = Color::Blue;
     }
 
+    void convert_reverse(){
+        for(auto &pair: string_2_City){
+            City_2_string[pair.second] = pair.first;
+        }
+
+        for(auto &pair: string_2_Color){
+            Color_2_string[pair.second] = pair.first;
+        }
+    }
+
+    void Board::init_cure(){
+        cure_was_found[Color::Black] = false;
+        cure_was_found[Color::Yellow] = false;
+        cure_was_found[Color::Red] = false;
+        cure_was_found[Color::Blue] = false;
+    }
+
+    int& Board::operator[] (City c){ return details_of_cities[c].disease_level; }
+
+    ostream& operator<< (ostream& os,Board& b){ 
+        cout << "_____Board Status_____\n\nDisease_Level = ";
+        for (auto const &pair: b.get_details_of_cities()) {
+            cout << "[" << City_2_string[pair.first] << ": " << pair.second.disease_level << "] "; 
+        }
+        cout << "\n\nDiscover Cure = ";
+        for(auto const &pair : b.get_cure_was_found()){
+            if(pair.second){
+                cout << "[" << Color_2_string[pair.first] << ": " << pair.second << "] "; 
+            }
+        }
+
+        cout << "\n\nResearch station = ";
+        for (auto const &pair: b.get_details_of_cities()) {
+            if(pair.second.research_stations){
+                cout << "[" << City_2_string[pair.first] << ": " << pair.second.research_stations << "] "; 
+            }
+        }
+        return os; 
+    }
+
+    bool Board::is_clean(){
+        for (auto const &pair: details_of_cities) {
+            if(pair.second.disease_level != 0) return false;
+        }
+        return true;
+    }
+
+    void Board::remove_cures(){
+        for(auto &pair : cure_was_found){
+            cure_was_found[pair.first] = false;
+        }
+    }
+
     void Board::read_cities(){
         convert();
         convert2();
+        convert_reverse();
         string line;
         ifstream units_file{"cities_map.txt"};
         while (getline (units_file, line)) {
@@ -100,23 +138,12 @@ namespace pandemic {
             Color c = string_2_Color[color];
 
             details_of_cities[s].color = c;
-            // cities_color[s] = c;
 
             while(city >> neighbor){
                 City n = string_2_City[neighbor];
                 details_of_cities[s].neighbors[n] = true;
-                // neighbor_cities[s][n] = true;
             }
         }
-
-        // // Print the hashmap
-        // for (auto const &pair: get_details_of_cities()) {
-        //     cout << "City: " << ": ";
-        //     for(auto const &pair2: get_details_of_cities()[pair.first].neighbors){
-        //         std::cout << "{neib} ";
-        //     }
-        //     std::cout << '\n';
-        // }
     }
 
 }

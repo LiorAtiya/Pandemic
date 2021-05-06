@@ -1,5 +1,6 @@
 #pragma once
 #include <map>
+#include <unordered_map>
 #include "City.hpp"
 #include "Color.hpp"
 #include <fstream>
@@ -21,18 +22,20 @@ namespace pandemic {
     class Board {
         private:
             map<City, DetailsCity> details_of_cities;
+            map<Color, bool> cure_was_found;
 
         public:
-            Board(){ read_cities(); }
+            Board(){ read_cities(); init_cure(); }
             //Init neighbors & colors cities 
             void read_cities();
+            void init_cure();
 
             //Getters & Setters of details maps
             map<City, DetailsCity>& get_details_of_cities(){ return details_of_cities; }
-
+            map<Color, bool>& get_cure_was_found(){ return cure_was_found; }
             //Operators
             int& operator[] (City c);
-            friend ostream& operator<< (ostream& os,const Board& num);
+            friend ostream& operator<< (ostream& os,Board& b);
 
             //Checks empty disease_level map
             bool is_clean();

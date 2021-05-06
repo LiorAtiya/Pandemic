@@ -1,11 +1,11 @@
 #include "OperationsExpert.hpp"
 
-// namespace pandemic {
+namespace pandemic {
 
-// //     // OperationsExpert::OperationsExpert(const Board b, const City c){
+    Player& OperationsExpert::build(){
+        get_board().get_details_of_cities()[get_current_place()].research_stations = true;
+        return *this;
+    }
+    string OperationsExpert::role(){ return "OperationsExpert"; }
 
-// //     // }
-
-// //     // void build(){}
-
-// }
+}

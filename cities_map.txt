@@ -3,10 +3,10 @@ Atlanta Blue Chicago Miami Washington
 Baghdad Black Tehran Istanbul Cairo Riyadh Karachi
 Bangkok Red Kolkata Chennai Jakarta HoChiMinhCity HongKong
 Beijing Red Shanghai Seoul
-Bogota Yellow MexicoCity Lima Miami SaoPaulo BuenosAires
 BuenosAires Yellow Bogota SaoPaulo
 Cairo Black Algiers Istanbul Baghdad Khartoum Riyadh
 Chennai Black Mumbai Delhi Kolkata Bangkok Jakarta
+Bogota Yellow MexicoCity Lima Miami SaoPaulo BuenosAires
 Chicago Blue SanFrancisco LosAngeles MexicoCity Atlanta Montreal
 Delhi Black Tehran Karachi Mumbai Chennai Kolkata
 Essen Blue London Paris Milan StPetersburg

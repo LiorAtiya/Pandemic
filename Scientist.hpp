@@ -1,13 +1,13 @@
+#pragma once
 #include "Player.hpp"
-#include "Board.hpp"
-#include "City.hpp"
 
 namespace pandemic {
     class Scientist: public Player{
-        
+        int number_card_2_cure;
+
         public:
-            Scientist(Board& b, City c, int n):Player(b,c){}
-            Player& discover_cure(Color c){ return *this; }
-            string role(){ return "Scientist"; }
+            Scientist(Board& b, City c, int n):Player(b,c), number_card_2_cure(n){}
+            Player& discover_cure(Color c);
+            string role();
     };
 }
