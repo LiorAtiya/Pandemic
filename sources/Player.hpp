@@ -33,7 +33,9 @@ namespace pandemic {
             Player& take_card(City c);
             
             //Role of player
-            virtual string role() = 0;
+            virtual string role();
+            //Remove all my_card - JUST FOR TESTS
+            void remove_cards();
     };
 
 }

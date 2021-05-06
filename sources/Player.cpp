@@ -134,4 +134,12 @@ namespace pandemic {
         return *this;
     }
 
+    string Player::role(){ return "Player"; }
+
+    void Player::remove_cards(){
+        my_cards.erase(Color::Black);
+        my_cards.erase(Color::Yellow);
+        my_cards.erase(Color::Red);
+        my_cards.erase(Color::Black);
+    }
 }

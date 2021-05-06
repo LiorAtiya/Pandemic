@@ -11,10 +11,9 @@ using namespace std;
 namespace pandemic {
 
     struct DetailsCity {
-        DetailsCity() : disease_level(0), research_stations(false), discover_cure(false){}
+        DetailsCity() : disease_level(0), research_stations(false){}
         int disease_level;
         bool research_stations;
-        bool discover_cure;
         map<City, bool> neighbors;
         Color color;
     };
@@ -26,7 +25,7 @@ namespace pandemic {
 
         public:
             Board(){ read_cities(); init_cure(); }
-            //Init neighbors & colors cities 
+            //Init neighbors,colors,cures cities 
             void read_cities();
             void init_cure();
 
@@ -39,7 +38,8 @@ namespace pandemic {
 
             //Checks empty disease_level map
             bool is_clean();
-            //Remove all discover_cure - JUST FOR TESTS
+            //Remove all discover_cure & stations - JUST FOR TESTS
             void remove_cures();
+            void remove_stations();
     };
 }

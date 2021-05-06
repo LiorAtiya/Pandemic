@@ -123,6 +123,12 @@ namespace pandemic {
         }
     }
 
+    void Board::remove_stations(){
+        for(auto &pair : details_of_cities){
+            details_of_cities[pair.first].research_stations = false;
+        }
+    }
+
     void Board::read_cities(){
         convert();
         convert2();
