@@ -7,12 +7,10 @@ namespace pandemic {
 
     //convert from string to enum City
     map<string, City> string_2_City;
-    map<City, string> City_2_string;
     //convert from string to enum Color
     map<string, Color> string_2_Color;
-    map<Color, string> Color_2_string;
 
-    void convert(){
+    void convert_city(){
 		string_2_City["Algiers"] = City::Algiers;
         string_2_City["Atlanta"] = City::Atlanta;
         string_2_City["Baghdad"] = City::Baghdad;
@@ -63,14 +61,14 @@ namespace pandemic {
         string_2_City["Washington"] = City::Washington;
     }
 
-    void convert2(){
+    void convert_color(){
         string_2_Color["Black"] = Color::Black;
         string_2_Color["Yellow"] = Color::Yellow;
         string_2_Color["Red"] = Color::Red;
         string_2_Color["Blue"] = Color::Blue;
     }
 
-    void convert_reverse(){
+    void Board::convert_reverse(){
         for(auto &pair: string_2_City){
             City_2_string[pair.second] = pair.first;
         }
@@ -92,19 +90,19 @@ namespace pandemic {
     ostream& operator<< (ostream& os,Board& b){ 
         cout << "_____Board Status_____\n\nDisease_Level = ";
         for (auto const &pair: b.get_details_of_cities()) {
-            cout << "[" << City_2_string[pair.first] << ": " << pair.second.disease_level << "] "; 
+            cout << "[" << b.get_City_2_string()[pair.first] << ": " << pair.second.disease_level << "] "; 
         }
         cout << "\n\nDiscover Cure = ";
         for(auto const &pair : b.get_cure_was_found()){
             if(pair.second){
-                cout << "[" << Color_2_string[pair.first] << ": " << pair.second << "] "; 
+                cout << "[" << b.get_Color_2_string()[pair.first] << ": " << pair.second << "] "; 
             }
         }
 
         cout << "\n\nResearch station = ";
         for (auto const &pair: b.get_details_of_cities()) {
             if(pair.second.research_stations){
-                cout << "[" << City_2_string[pair.first] << ": " << pair.second.research_stations << "] "; 
+                cout << "[" << b.get_City_2_string()[pair.first] << ": " << pair.second.research_stations << "] "; 
             }
         }
         return os; 
@@ -130,8 +128,8 @@ namespace pandemic {
     }
 
     void Board::read_cities(){
-        convert();
-        convert2();
+        convert_city();
+        convert_color();
         convert_reverse();
         string line;
         ifstream units_file{"cities_map.txt"};

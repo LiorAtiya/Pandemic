@@ -23,10 +23,10 @@ namespace pandemic {
             map<Color, map<City,bool>>& get_my_cards(){ return my_cards; }
 
             //Actions of player
-            Player& drive(City c);
+            virtual Player& drive(City c);
             virtual Player& fly_direct(City c);
-            Player& fly_charter(City c);
-            Player& fly_shuttle(City c);
+            virtual Player& fly_charter(City c);
+            virtual Player& fly_shuttle(City c);
             virtual Player& build();
             virtual Player& discover_cure(Color c);
             virtual Player& treat(City c);

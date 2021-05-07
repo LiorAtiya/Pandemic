@@ -23,15 +23,22 @@ namespace pandemic {
             map<City, DetailsCity> details_of_cities;
             map<Color, bool> cure_was_found;
 
+            map<City, string> City_2_string;
+            map<Color, string> Color_2_string;
+
         public:
             Board(){ read_cities(); init_cure(); }
             //Init neighbors,colors,cures cities 
             void read_cities();
             void init_cure();
+            void convert_reverse();
 
             //Getters & Setters of details maps
             map<City, DetailsCity>& get_details_of_cities(){ return details_of_cities; }
             map<Color, bool>& get_cure_was_found(){ return cure_was_found; }
+            map<City, string>& get_City_2_string() { return City_2_string; }
+            map<Color, string>& get_Color_2_string(){ return Color_2_string; }
+
             //Operators
             int& operator[] (City c);
             friend ostream& operator<< (ostream& os,Board& b);

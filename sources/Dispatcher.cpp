@@ -4,7 +4,7 @@ namespace pandemic {
 
     Player& Dispatcher::fly_direct(City c){ 
         
-        if(get_board().get_details_of_cities()[get_current_place()].research_stations){
+        if(get_board().get_details_of_cities()[get_current_place()].research_stations && this->get_current_place() != c){
             set_current_place(c);
         }else{
             Player::fly_direct(c);
