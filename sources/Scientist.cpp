@@ -8,7 +8,7 @@ namespace pandemic {
             //If there are 5 cards of the same color
             if(get_my_cards()[c].size() >= number_card_2_cure){
                 //If no cure for the disease has yet been discovered
-                if(!get_board().get_cure_was_found()[c]){
+                // if(!get_board().get_cure_was_found()[c]){
                     
                     //Remove 5 cards from my_cards
                     int count_delete = 0;
@@ -23,9 +23,9 @@ namespace pandemic {
                     }
                     get_board().get_cure_was_found()[c] = true;
 
-                }else{
-                    throw invalid_argument("A cure for the disease has already been discovered!");
-                }
+                // }else{
+                //     throw invalid_argument("A cure for the disease has already been discovered!");
+                // }
             }else{
                 throw invalid_argument("You do not have 5 cards of the same color!");
             }
