@@ -110,7 +110,7 @@ namespace pandemic {
 
     bool Board::is_clean(){
         for (auto const &pair: details_of_cities) {
-            if(pair.second.disease_level != 0) return false;
+            if(pair.second.disease_level != 0) {return false;}
         }
         return true;
     }
@@ -135,7 +135,9 @@ namespace pandemic {
         ifstream units_file{"cities_map.txt"};
         while (getline (units_file, line)) {
             istringstream city(line);
-            string src, color, neighbor;
+            string src;
+            string color;
+            string neighbor;
             city >> src >> color;
 
             City s = string_2_City[src];

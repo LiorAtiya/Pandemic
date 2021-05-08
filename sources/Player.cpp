@@ -9,7 +9,7 @@
 namespace pandemic {
     
     Player& Player::drive(City c){
-        if(board_game.get_details_of_cities()[this->current_place].neighbors.count(c) && c != this->current_place){
+        if(static_cast<unsigned int>(board_game.get_details_of_cities()[this->current_place].neighbors[c]) != 0U && c != this->current_place){
             current_place = c;
         }else{
             string exp = get_board().get_City_2_string()[c] + " is not connected to " + get_board().get_City_2_string()[this->current_place];
@@ -22,7 +22,7 @@ namespace pandemic {
         //Input the same of current city
         if(c != this->current_place){
             //Card "c" in the player's list of cards
-            if(my_cards[board_game.get_details_of_cities()[c].color][c] != 0U){
+            if(static_cast<unsigned int>(my_cards[board_game.get_details_of_cities()[c].color][c]) != 0U){
                 current_place = c;
                 //Remove card of city from my_card
                 my_cards[board_game.get_details_of_cities()[c].color].erase(c);
@@ -41,7 +41,7 @@ namespace pandemic {
     Player& Player::fly_charter(City c){
         if(c != this->current_place){
             //Card "c" in the player's list of cards
-            if(my_cards[board_game.get_details_of_cities()[this->current_place].color][this->current_place] != 0U){
+            if(static_cast<unsigned int>(my_cards[board_game.get_details_of_cities()[this->current_place].color][this->current_place]) != 0U){
                 //Remove a card of the city in which the player is from the my_cards
                 my_cards[board_game.get_details_of_cities()[this->current_place].color].erase(City::Khartoum);
                 current_place = c;
@@ -80,7 +80,7 @@ namespace pandemic {
 
     Player& Player::build(){
         //There is a card of the current city
-        if(my_cards[board_game.get_details_of_cities()[this->current_place].color].count(this->current_place)){
+        if(static_cast<unsigned int>(my_cards[board_game.get_details_of_cities()[this->current_place].color][this->current_place]) != 0U){
             //If there is not yet a research station in the current city
             if(!board_game.get_details_of_cities()[this->current_place].research_stations){
                 board_game.get_details_of_cities()[this->current_place].research_stations = true;
@@ -98,7 +98,8 @@ namespace pandemic {
         //If there is a research station in the city where the player is located
         if(board_game.get_details_of_cities()[current_place].research_stations){
             //If there are 5 cards of the same color
-            if(my_cards[c].size() >= 5){
+            const int min_cards = 5;
+            if(my_cards[c].size() >= min_cards){
                 //If no cure for the disease has yet been discovered
                 if(!board_game.get_cure_was_found()[c]){
                     
@@ -106,7 +107,7 @@ namespace pandemic {
                     int count_delete = 0;
                     for (auto it = my_cards[c].cbegin(), next_it = it; it != my_cards[c].cend(); it = next_it){
                         ++next_it;
-                        if (count_delete != 5){
+                        if (count_delete != min_cards){
                             my_cards[c].erase(it);
                             count_delete++;
                         }else{
@@ -114,9 +115,6 @@ namespace pandemic {
                         }
                     }
                     board_game.get_cure_was_found()[c] = true;
-
-                }else{
-                    throw invalid_argument("A cure for the disease has already been discovered!");
                 }
             }else{
                 string exp = "You only have "+to_string(my_cards[c].size())+" "+ get_board().get_Color_2_string()[c] +" cards remaining";

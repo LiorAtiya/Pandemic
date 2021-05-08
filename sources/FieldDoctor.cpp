@@ -4,7 +4,7 @@ namespace pandemic {
 
     Player& FieldDoctor::treat(City c){
         //If the input city is a neighbor of the current city where the player is located.
-        if(get_board().get_details_of_cities()[get_current_place()].neighbors.count(c) || get_current_place() == c){
+        if(static_cast<unsigned int>(get_board().get_details_of_cities()[get_current_place()].neighbors[c]) != 0U || get_current_place() == c){
             //If there is a disease in the neighbor city
             if(get_board().get_details_of_cities()[c].disease_level > 0){
                 //If there was a "discover_cure" in the neighbor city

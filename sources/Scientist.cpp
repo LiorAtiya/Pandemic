@@ -8,13 +8,14 @@ namespace pandemic {
             //If there are 5 cards of the same color
             if(get_my_cards()[c].size() >= number_card_2_cure){
                 //If no cure for the disease has yet been discovered
-                // if(!get_board().get_cure_was_found()[c]){
+                if(!get_board().get_cure_was_found()[c]){
                     
                     //Remove 5 cards from my_cards
                     int count_delete = 0;
+                    const int max_delete = 5;
                     for (auto it = get_my_cards()[c].cbegin(), next_it = it; it != get_my_cards()[c].cend(); it = next_it){
                         ++next_it;
-                        if (count_delete != 5){
+                        if (count_delete != max_delete){
                             get_my_cards()[c].erase(it);
                             count_delete++;
                         }else{
@@ -22,15 +23,14 @@ namespace pandemic {
                         }
                     }
                     get_board().get_cure_was_found()[c] = true;
-
-                // }else{
-                //     throw invalid_argument("A cure for the disease has already been discovered!");
-                // }
+                }
             }else{
-                throw invalid_argument("You do not have 5 cards of the same color!");
+                string exp = "You only have "+to_string(get_my_cards()[c].size())+" "+ get_board().get_Color_2_string()[c] +" cards remaining";
+                throw invalid_argument(exp);
             }
         }else{
-            throw invalid_argument("There is no research station in the current city!");
+            string exp = "There is no research station in " + get_board().get_City_2_string()[get_current_place()];
+            throw invalid_argument(exp);
         }   
         return *this; 
     }
