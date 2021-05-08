@@ -4,22 +4,28 @@ namespace pandemic {
 
     Player& Virologist::treat(City c){
 
-        //If a player has a city card "c".
-        if(get_my_cards()[get_board().get_details_of_cities()[c].color].count(c)){
-            //If there is a disease in the neighbor city
-            if(get_board().get_details_of_cities()[c].disease_level > 0){
-                //If there was a "discover_cure" in the neighbor city
-                if(get_board().get_cure_was_found()[get_board().get_details_of_cities()[c].color]){
-                    get_board()[c] = 0;
+        if(get_current_place() != c){
+            //If a player has a city card "c".
+            if(get_my_cards()[get_board().get_details_of_cities()[c].color].count(c)){
+                //If there is a disease in the neighbor city
+                if(get_board().get_details_of_cities()[c].disease_level > 0){
+                    //If there was a "discover_cure" in the neighbor city
+                    if(get_board().get_cure_was_found()[get_board().get_details_of_cities()[c].color]){
+                        get_board()[c] = 0;
+                    }else{
+                        get_board()[c]--;
+                    }
+                    get_my_cards()[get_board().get_details_of_cities()[c].color].erase(c);
                 }else{
-                    get_board()[c]--;
+                    string exp = "There is no air pollution in " + get_board().get_City_2_string()[c];
+                    throw invalid_argument(exp);
                 }
-                get_my_cards()[get_board().get_details_of_cities()[c].color].erase(c);
             }else{
-                throw invalid_argument("There is no air pollution in the current city!");
+                string exp = "You do not have the card of " + get_board().get_City_2_string()[c]; 
+                throw invalid_argument(exp);
             }
         }else{
-            throw invalid_argument("You do not have a City of Input card!");
+            Player::treat(c);
         }
 
         return *this; 
