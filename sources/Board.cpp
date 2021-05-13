@@ -5,12 +5,7 @@
 
 namespace pandemic {
 
-    //convert from string to enum City
-    map<string, City> string_2_City;
-    //convert from string to enum Color
-    map<string, Color> string_2_Color;
-
-    void convert_city(){
+    void Board::convert_city(){
 		string_2_City["Algiers"] = City::Algiers;
         string_2_City["Atlanta"] = City::Atlanta;
         string_2_City["Baghdad"] = City::Baghdad;
@@ -61,7 +56,7 @@ namespace pandemic {
         string_2_City["Washington"] = City::Washington;
     }
 
-    void convert_color(){
+    void Board::convert_color(){
         string_2_Color["Black"] = Color::Black;
         string_2_Color["Yellow"] = Color::Yellow;
         string_2_Color["Red"] = Color::Red;

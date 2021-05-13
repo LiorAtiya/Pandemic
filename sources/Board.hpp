@@ -14,6 +14,7 @@ namespace pandemic {
         DetailsCity() : disease_level(0), research_stations(false){}
         int disease_level;
         bool research_stations;
+        //Can be Set structure
         map<City, bool> neighbors;
         Color color;
     };
@@ -25,6 +26,8 @@ namespace pandemic {
 
             map<City, string> City_2_string;
             map<Color, string> Color_2_string;
+            map<string, City> string_2_City;
+            map<string, Color> string_2_Color;
 
         public:
             Board(){ read_cities(); init_cure(); }
@@ -32,12 +35,16 @@ namespace pandemic {
             void read_cities();
             void init_cure();
             void convert_reverse();
+            void convert_city();
+            void convert_color();
 
             //Getters & Setters of details maps
             map<City, DetailsCity>& get_details_of_cities(){ return details_of_cities; }
             map<Color, bool>& get_cure_was_found(){ return cure_was_found; }
             map<City, string>& get_City_2_string() { return City_2_string; }
             map<Color, string>& get_Color_2_string(){ return Color_2_string; }
+            map<string, City> get_string_2_City(){ return string_2_City; }
+            map<string, Color> get_string_2_Color(){ return string_2_Color; }
 
             //Operators
             int& operator[] (City c);

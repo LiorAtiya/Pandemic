@@ -16,7 +16,7 @@ namespace pandemic {
 
         public:
             Player(Board& b, City c):board_game(b),current_place(c){}
-
+            Player();
             Board& get_board(){ return board_game; }
             City get_current_place(){ return current_place; }
             void set_current_place(City c){ current_place = c; }
@@ -36,6 +36,11 @@ namespace pandemic {
             virtual string role();
             //Remove all my_card - JUST FOR TESTS
             void remove_cards();
+
+            void operator= (Player other){
+                board_game = other.get_board();
+                current_place = other.get_current_place();
+            }
     };
 
 }

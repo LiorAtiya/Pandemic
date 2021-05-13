@@ -9,6 +9,5 @@ namespace pandemic {
             Researcher(Board& b, City c):Player(b,c){}
             Player& discover_cure(Color c);
             string role();
-            
     };
 }
