@@ -1,11 +1,11 @@
 #pragma once
 #include <map>
-#include <unordered_map>
 #include "City.hpp"
 #include "Color.hpp"
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <set>
 using namespace std;
 
 namespace pandemic {
@@ -15,7 +15,7 @@ namespace pandemic {
         int disease_level;
         bool research_stations;
         //Can be Set structure
-        map<City, bool> neighbors;
+        set<City> neighbors;
         Color color;
     };
 
@@ -30,7 +30,7 @@ namespace pandemic {
             map<string, Color> string_2_Color;
 
         public:
-            Board(){ read_cities(); init_cure(); }
+            Board(){ read_cities(); }
             //Init neighbors,colors,cures cities 
             void read_cities();
             void init_cure();
@@ -38,7 +38,7 @@ namespace pandemic {
             void convert_city();
             void convert_color();
 
-            //Getters & Setters of details maps
+            //Getters of details maps
             map<City, DetailsCity>& get_details_of_cities(){ return details_of_cities; }
             map<Color, bool>& get_cure_was_found(){ return cure_was_found; }
             map<City, string>& get_City_2_string() { return City_2_string; }

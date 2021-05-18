@@ -2,11 +2,14 @@
 
 namespace pandemic {
 
+    //Can perform a "treat" operation, 
+    //not only in the city it is in, but in any city in the world 
+    // - by throwing a card of that city.
     Player& Virologist::treat(City c){
-
+        //Not the same card
         if(get_current_place() != c){
             //If a player has a city card "c".
-            if(static_cast<unsigned int>(get_my_cards()[get_board().get_details_of_cities()[c].color][c]) != 0U){
+            if(get_my_cards()[get_board().get_details_of_cities()[c].color].contains(c)){
                 //If there is a disease in the neighbor city
                 if(get_board().get_details_of_cities()[c].disease_level > 0){
                     //If there was a "discover_cure" in the neighbor city

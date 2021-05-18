@@ -7,9 +7,10 @@
 #include<iostream>
 
 namespace pandemic {
-    
+
+    //Drive from the current city to a nearby city
     Player& Player::drive(City c){
-        if(static_cast<unsigned int>(board_game.get_details_of_cities()[this->current_place].neighbors[c]) != 0U && c != this->current_place){
+        if(board_game.get_details_of_cities()[this->current_place].neighbors.contains(c) && c != this->current_place){
             current_place = c;
         }else{
             string exp = get_board().get_City_2_string()[c] + " is not connected to " + get_board().get_City_2_string()[this->current_place];
@@ -18,11 +19,12 @@ namespace pandemic {
         return *this;
     }
 
+    //Fly from the current city to the city of some card in his hand
     Player& Player::fly_direct(City c){
         //Input the same of current city
         if(c != this->current_place){
             //Card "c" in the player's list of cards
-            if(static_cast<unsigned int>(my_cards[board_game.get_details_of_cities()[c].color][c]) != 0U){
+            if(my_cards[board_game.get_details_of_cities()[c].color].contains(c)){
                 current_place = c;
                 //Remove card of city from my_card
                 my_cards[board_game.get_details_of_cities()[c].color].erase(c);
@@ -38,10 +40,11 @@ namespace pandemic {
         return *this;
     }
 
+    //Fly from the current city to any city.
     Player& Player::fly_charter(City c){
         if(c != this->current_place){
             //Card "c" in the player's list of cards
-            if(static_cast<unsigned int>(my_cards[board_game.get_details_of_cities()[this->current_place].color][this->current_place]) != 0U){
+            if(my_cards[board_game.get_details_of_cities()[this->current_place].color].contains(this->current_place)){
                 //Remove a card of the city in which the player is from the my_cards
                 my_cards[board_game.get_details_of_cities()[this->current_place].color].erase(City::Khartoum);
                 current_place = c;
@@ -57,10 +60,14 @@ namespace pandemic {
         return *this;
     }
 
+    //If there is a research station in the current city, 
+    //you can fly to any other city that has a research station
     Player& Player::fly_shuttle(City c){
-
+        //Input the same of current city
         if(c != this->current_place){
+            //There is a research station in the current city
             if(board_game.get_details_of_cities()[this->current_place].research_stations){
+                //There is a research station in the city to which you want to fly
                 if(board_game.get_details_of_cities()[c].research_stations){
                     this->current_place = c;
                 }else{
@@ -78,9 +85,10 @@ namespace pandemic {
         return *this;
     }
 
+    //Builds a research station in the city in which they are located.
     Player& Player::build(){
         //There is a card of the current city
-        if(static_cast<unsigned int>(my_cards[board_game.get_details_of_cities()[this->current_place].color][this->current_place]) != 0U){
+        if(my_cards[board_game.get_details_of_cities()[this->current_place].color].contains(this->current_place)){
             //If there is not yet a research station in the current city
             if(!board_game.get_details_of_cities()[this->current_place].research_stations){
                 board_game.get_details_of_cities()[this->current_place].research_stations = true;
@@ -94,6 +102,7 @@ namespace pandemic {
         return *this;
     }
     
+    //Discover a cure for a disease of a certain color.
     Player& Player::discover_cure(Color c){
         //If there is a research station in the city where the player is located
         if(board_game.get_details_of_cities()[current_place].research_stations){
@@ -127,9 +136,9 @@ namespace pandemic {
         return *this;
     }
 
-
+    //Decrease one disease cube from the city you are in.
     Player& Player::treat(City c){
-    
+        //Input the same of current city
         if(this->current_place == c){
             //If there is a disease in the current city
             if(board_game.get_details_of_cities()[this->current_place].disease_level > 0){
@@ -151,14 +160,16 @@ namespace pandemic {
         return *this; 
     }
 
+    //Taking a city card from the box cards
     Player& Player::take_card(City c){
         //Adding a card to the player's cashier
-        my_cards[board_game.get_details_of_cities()[c].color][c] = true;
+        my_cards[board_game.get_details_of_cities()[c].color].insert(c);
         return *this;
     }
 
     string Player::role(){ return "Player"; }
 
+    //Remove all my_card - JUST FOR TESTS
     void Player::remove_cards(){
         my_cards.erase(Color::Black);
         my_cards.erase(Color::Yellow);

@@ -1,4 +1,3 @@
-#pragma once
 #include "Player.hpp"
 
 namespace pandemic {

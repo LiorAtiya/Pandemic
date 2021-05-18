@@ -5,6 +5,7 @@
 
 namespace pandemic {
 
+    //Convert string to enum City
     void Board::convert_city(){
 		string_2_City["Algiers"] = City::Algiers;
         string_2_City["Atlanta"] = City::Atlanta;
@@ -56,6 +57,7 @@ namespace pandemic {
         string_2_City["Washington"] = City::Washington;
     }
 
+    //Convert string to enum Color
     void Board::convert_color(){
         string_2_Color["Black"] = Color::Black;
         string_2_Color["Yellow"] = Color::Yellow;
@@ -63,6 +65,7 @@ namespace pandemic {
         string_2_Color["Blue"] = Color::Blue;
     }
 
+    //Convert enum City, Color to string
     void Board::convert_reverse(){
         for(auto &pair: string_2_City){
             City_2_string[pair.second] = pair.first;
@@ -73,6 +76,7 @@ namespace pandemic {
         }
     }
 
+    //Initialize discovery cure in any color
     void Board::init_cure(){
         cure_was_found[Color::Black] = false;
         cure_was_found[Color::Yellow] = false;
@@ -80,6 +84,35 @@ namespace pandemic {
         cure_was_found[Color::Blue] = false;
     }
 
+    //Initialize details on all cities
+    void Board::read_cities(){
+        convert_city();
+        convert_color();
+        convert_reverse();
+        init_cure();
+
+        string line;
+        ifstream units_file{"cities_map.txt"};
+        while (getline (units_file, line)) {
+            istringstream city(line);
+            string src;
+            string color;
+            string neighbor;
+            city >> src >> color;
+
+            City s = string_2_City[src];
+            Color c = string_2_Color[color];
+
+            details_of_cities[s].color = c;
+
+            while(city >> neighbor){
+                City n = string_2_City[neighbor];
+                details_of_cities[s].neighbors.insert(n);
+            }
+        }
+    }
+
+    //Operators
     int& Board::operator[] (City c){ return details_of_cities[c].disease_level; }
 
     ostream& operator<< (ostream& os,Board& b){ 
@@ -103,6 +136,7 @@ namespace pandemic {
         return os; 
     }
 
+    //Checks empty disease_level map
     bool Board::is_clean(){
         for (auto const &pair: details_of_cities) {
             if(pair.second.disease_level != 0) {return false;}
@@ -110,6 +144,7 @@ namespace pandemic {
         return true;
     }
 
+    //Remove all discover_cure & stations - JUST FOR TESTS
     void Board::remove_cures(){
         for(auto &pair : cure_was_found){
             cure_was_found[pair.first] = false;
@@ -119,31 +154,6 @@ namespace pandemic {
     void Board::remove_stations(){
         for(auto &pair : details_of_cities){
             details_of_cities[pair.first].research_stations = false;
-        }
-    }
-
-    void Board::read_cities(){
-        convert_city();
-        convert_color();
-        convert_reverse();
-        string line;
-        ifstream units_file{"cities_map.txt"};
-        while (getline (units_file, line)) {
-            istringstream city(line);
-            string src;
-            string color;
-            string neighbor;
-            city >> src >> color;
-
-            City s = string_2_City[src];
-            Color c = string_2_Color[color];
-
-            details_of_cities[s].color = c;
-
-            while(city >> neighbor){
-                City n = string_2_City[neighbor];
-                details_of_cities[s].neighbors[n] = true;
-            }
         }
     }
 

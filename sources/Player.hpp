@@ -3,6 +3,7 @@
 #include "Board.hpp"
 #include "Color.hpp"
 #include "City.hpp"
+#include <set>
 
 using namespace std;
 
@@ -11,7 +12,7 @@ namespace pandemic {
     class Player{
         private:
             City current_place;
-            map<Color, map<City,bool>> my_cards;
+            map<Color, set<City>> my_cards;
             Board& board_game;
 
         public:
@@ -20,8 +21,8 @@ namespace pandemic {
             Board& get_board(){ return board_game; }
             City get_current_place(){ return current_place; }
             void set_current_place(City c){ current_place = c; }
-            map<Color, map<City,bool>>& get_my_cards(){ return my_cards; }
-
+            map<Color, set<City>>& get_my_cards(){ return my_cards; }
+            
             //Actions of player
             virtual Player& drive(City c);
             virtual Player& fly_direct(City c);
